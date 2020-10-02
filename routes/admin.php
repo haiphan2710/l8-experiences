@@ -13,3 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::name('login.')
+    ->prefix('login')
+    ->group(function () {
+        Route::get('/', 'Auth\LoginController@showLogin')->name('view');
+        Route::post('/', 'Auth\LoginController@authenticate')->name('action');
+    });
+
+Route::group([
+    'middleware' => ['auth.admin']
+], function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('home');
+});

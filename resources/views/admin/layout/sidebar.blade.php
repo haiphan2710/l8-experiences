@@ -47,18 +47,12 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item {{ activeClass(['/']) }}">
-            <a class="nav-link" href="{{ url('/') }}">
-                <i class="menu-icon mdi mdi-television"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
         <li class="nav-item">
             <a class="nav-link"
                href="https://www.bootstrapdash.com/demo/star-laravel-free/documentation/documentation.html"
                target="_blank">
                 <i class="menu-icon mdi mdi-file-outline"></i>
-                <span class="menu-title">Documentation</span>
+                <span class="menu-title">UI Documentation</span>
             </a>
         </li>
     </ul>
