@@ -8,12 +8,15 @@
                     <div class="mb-5 text-center">
                         <h4>ADMIN LOGIN</h4>
                     </div>
-                    <form action="#">
+                    <form method="POST" action="{{ route('admin.login.execute') }}">
                         @csrf
+                        @if(isset($isError))
+                            <span class="d-block text-danger mb-3">Email or Password invalid!</span>
+                        @endif
                         <div class="form-group">
-                            <label class="label">Username</label>
+                            <label class="label">Email</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" class="form-control" placeholder="Email" name="email" required>
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                       <i class="mdi mdi-check-circle-outline"></i>
@@ -24,7 +27,7 @@
                         <div class="form-group mb-5">
                             <label class="label">Password</label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" placeholder="*********">
+                                <input type="password" class="form-control" placeholder="*********" name="password" required>
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                       <i class="mdi mdi-check-circle-outline"></i>
@@ -33,7 +36,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary submit-btn btn-block">Login</button>
+                            <button type="submit" class="btn btn-primary submit-btn btn-block">Login</button>
                         </div>
                     </form>
                 </div>

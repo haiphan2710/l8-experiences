@@ -6,11 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
+    /**
+     * Login View
+     *
+     * @return RedirectResponse | View
+     */
     public function showLogin()
     {
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
+
         return view('admin.login');
     }
 
@@ -19,7 +29,7 @@ class LoginController extends Controller
      *
      * @param Request $request
      *
-     * @return RedirectResponse
+     * @return mixed
      */
     public function authenticate(Request $request)
     {
@@ -27,7 +37,19 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('dashboard');
+            return redirect()->route('admin.dashboard');
         }
+
+        return view('admin.login', ['isError' => true]);
+    }
+
+    /**
+     * Logout
+     */
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('admin.login.view');
     }
 }

@@ -17,13 +17,15 @@ Route::name('login.')
     ->prefix('login')
     ->group(function () {
         Route::get('/', 'Auth\LoginController@showLogin')->name('view');
-        Route::post('/', 'Auth\LoginController@authenticate')->name('action');
+        Route::post('/', 'Auth\LoginController@authenticate')->name('execute');
     });
+
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group([
     'middleware' => ['auth.admin']
 ], function () {
     Route::get('/', function () {
         return view('admin.dashboard');
-    })->name('home');
+    })->name('dashboard');
 });

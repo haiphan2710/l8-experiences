@@ -34,7 +34,7 @@
                     <a class="dropdown-item mt-2"> Manage Accounts </a>
                     <a class="dropdown-item"> Change Password </a>
                     <a class="dropdown-item"> Check Inbox </a>
-                    <a class="dropdown-item"> Sign Out </a>
+                    <a href="{{ route('admin.logout') }}" class="dropdown-item"> Sign Out </a>
                 </div>
             </li>
         </ul>
