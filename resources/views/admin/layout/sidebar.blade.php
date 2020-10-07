@@ -7,7 +7,7 @@
                         <img src="{{ url('assets/images/faces/face8.jpg') }}" alt="profile image">
                     </div>
                     <div class="text-wrapper">
-                        <p class="profile-name">Richard V.Welsh</p>
+                        <p class="profile-name">{{ auth()->user()->name }}</p>
                         <div class="dropdown" data-display="static">
                             <a href="#" class="nav-link d-flex user-switch-dropdown-toggler" id="UsersettingsDropdown"
                                href="#" data-toggle="dropdown" aria-expanded="false">
@@ -37,19 +37,23 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-success btn-block">New Project <i class="mdi mdi-plus"></i>
-                </button>
             </div>
         </li>
-        <li class="nav-item {{ activeClass(['/']) }}">
-            <a class="nav-link" href="{{ url('/') }}">
+        <li class="nav-item {{ activeClass(['admin']) }}">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="menu-icon mdi mdi-television"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        <li class="nav-item {{ activeClass(['admin/user']) }}">
+            <a class="nav-link" href="{{ route('admin.user.index') }}">
+                <i class="menu-icon mdi mdi-account-multiple"></i>
+                <span class="menu-title">User Management</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link"
-               href="https://www.bootstrapdash.com/demo/star-laravel-free/documentation/documentation.html"
+               href="https://www.bootstrapdash.com/demo/star-laravel-free/template/"
                target="_blank">
                 <i class="menu-icon mdi mdi-file-outline"></i>
                 <span class="menu-title">UI Documentation</span>

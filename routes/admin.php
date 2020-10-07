@@ -28,4 +28,6 @@ Route::group([
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
+
+    Route::get('user', 'UserController@index')->name('user.index');
 });
