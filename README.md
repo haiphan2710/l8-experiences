@@ -5,4 +5,10 @@ Application build base on laravel 8
 
 ## References
 + [Laravel Documentation](https://laravel.com/docs/8.x)
-+ [Admin Template Of BootstrapDash](https://www.bootstrapdash.com/demo/star-laravel-free/template/)
++ [Admin Template Of BootstrapDash (Author: Richard V.Welsh)](https://www.bootstrapdash.com/demo/star-laravel-free/template/)
+
+## Support Classes
+
+### About Filter
++ Class `BaseFilter` and Trait `CanSearch` will help your filters to work easier
++ Use command `php artisan make:filter {filterName}` to create a class
