@@ -22,10 +22,23 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $this->roles = Role::all();
-
+        $this->createOwner();
         $this->createAdmin();
         $this->generate(10, RoleEnum::GUEST);
+    }
+
+    /**
+     * Create an owner
+     *
+     * @return void
+     */
+    protected function createOwner () {
+        $admin = User::factory()->create([
+            'email' => 'owner@gmail.com',
+            'name'  => 'Owner'
+        ]);
+
+        $admin->attachRole(RoleEnum::OWNER);
     }
 
     /**
@@ -39,7 +52,7 @@ class UserSeeder extends Seeder
             'name'  => 'Administrator'
         ]);
 
-        $admin->attachRole($this->roles->where('name', RoleEnum::ADMIN)->first());
+        $admin->attachRole(RoleEnum::ADMIN);
     }
 
     /**
@@ -52,7 +65,6 @@ class UserSeeder extends Seeder
      */
     protected function generate(int $number, string $role) {
         $users = User::factory($number)->create();
-        $role  = $this->roles->where('name', )->first();
 
         $users->each(function ($user) use ($role) {
             $user->attachRole($role);
