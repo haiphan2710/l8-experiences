@@ -15,7 +15,7 @@ trait HasRole
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'user_roles');
+        return $this->belongsToMany(Role::class, 'users_roles');
     }
 
     /**
@@ -26,7 +26,7 @@ trait HasRole
      */
     public function attachRole(string $role)
     {
-        if ($this->hasRole($role) || is_null($role)) {
+        if ($this->hasRoles($role) || is_null($role)) {
             return $this;
         }
 
@@ -44,7 +44,7 @@ trait HasRole
      */
     public function isAdministrator()
     {
-        return $this->hasRole(RoleEnum::ADMIN);
+        return $this->hasRoles(RoleEnum::ADMIN);
     }
 
     /**
@@ -54,7 +54,7 @@ trait HasRole
      *
      * @return bool
      */
-    public function hasRole($roles)
+    public function hasRoles($roles)
     {
         if (is_string($roles)) {
             return $this->roles->contains('name', $roles);

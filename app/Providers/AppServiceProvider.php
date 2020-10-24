@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadHelpers();
+    
+        $this->passportSetting();
     }
 
     /**
@@ -34,5 +38,13 @@ class AppServiceProvider extends ServiceProvider
         foreach (glob(__DIR__.'/../Helpers/*.php') as $filename) {
             require_once $filename;
         }
+    }
+    
+    protected function passportSetting()
+    {
+        Passport::ignoreMigrations();
+        Passport::routes();
+        Passport::tokensExpireIn(Carbon::now()->addDays(1));
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
     }
 }

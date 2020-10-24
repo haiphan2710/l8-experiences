@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminAuthenticate;
+use App\Http\Middleware\ApiAdminAuthenticate;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
@@ -84,6 +85,7 @@ class Kernel extends HttpKernel
         'signed'           => ValidateSignature::class,
         'throttle'         => ThrottleRequests::class,
         'verified'         => EnsureEmailIsVerified::class,
-        'auth.admin'     => AdminAuthenticate::class,
+        'auth.admin'       => AdminAuthenticate::class,
+        'api.admin.auth'   => ApiAdminAuthenticate::class,
     ];
 }

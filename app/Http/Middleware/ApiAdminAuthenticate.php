@@ -7,24 +7,22 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAuthenticate
+class ApiAdminAuthenticate
 {
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
         $roles = [ Role::ADMIN, Role::OWNER ];
-
-        if ( Auth::check() && Auth::user()->hasRoles($roles) ) {
-            return $next($request);
-        }
         
-        return redirect()->route('admin.login.view');
+        abort_if(!Auth::check() || !Auth::user()->hasRoles($roles), 401, 'Unauthorized' );
+    
+        return $next($request);
+        
     }
 }

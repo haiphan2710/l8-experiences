@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             $this->mapWebRoutes();
             $this->mapAdminRoutes();
+            $this->mapApiV1Routes();
         });
     }
 
@@ -51,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60);
+            return Limit::perMinute(180);
         });
     }
 
@@ -80,11 +81,16 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * API Routes
      */
-    protected function mapApiRoutes()
+    protected function mapApiV1Routes()
     {
-        Route::prefix('api')
+        Route::prefix('admin/api/v1')
             ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/api.php'));
+            ->namespace($this->namespace . '\Api\Admin')
+            ->group(base_path('routes/api/v1/admin.php'));
+
+        Route::prefix('portal/api/v1')
+            ->middleware('api')
+            ->namespace($this->namespace . '\Api\Portal')
+            ->group(base_path('routes/api/v1/portal.php'));
     }
 }
