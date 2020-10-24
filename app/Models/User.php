@@ -7,10 +7,15 @@ use App\Cores\HasRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use GoldSpecDigital\LaravelEloquentUUID\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, CanSearch, HasRole;
+    use HasFactory,
+        Notifiable,
+        CanSearch,
+        HasRole,
+        HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

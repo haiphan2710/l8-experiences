@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
     {
         $this->createOwner();
         $this->createAdmin();
-        $this->generate(10, RoleEnum::GUEST);
+        $this->generate(100, RoleEnum::GUEST);
     }
 
     /**
