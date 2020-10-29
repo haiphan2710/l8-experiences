@@ -8,8 +8,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Cores\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Traits\API\ApiResponse;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;

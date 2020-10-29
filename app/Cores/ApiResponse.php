@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\API;
+namespace App\Cores;
 
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
